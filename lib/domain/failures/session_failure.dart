@@ -4,19 +4,15 @@ part 'session_failure.freezed.dart';
 @freezed
 class SessionFailure with _$SessionFailure {
   const SessionFailure._();
-
-  // Failure types
-  const factory SessionFailure.creationFailed() = _CreationFailed;
-  const factory SessionFailure.sessionExpired() = _SessionExpired;
+  const factory SessionFailure.databaseError(String? message) = _DatabaseError;
   const factory SessionFailure.notFound() = _NotFound;
-  const factory SessionFailure.permissionDenied() = _PermissionDenied;
+  const factory SessionFailure.sessionExpired() = _SessionExpired;
   const factory SessionFailure.unknownError() = _UnknownError;
 
   String get message => when(
-        creationFailed: () => 'Failed to create session',
-        sessionExpired: () => 'Session has expired',
+        databaseError: (message) => message ?? 'Database error occurred',
         notFound: () => 'Session not found',
-        permissionDenied: () => 'Permission denied',
-        unknownError: () => 'An unknown error occurred',
+        sessionExpired: () => 'Session has expired',
+        unknownError: () => 'Unknown error occurred',
       );
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sippylife_assesment/core/routes/app_routers.dart';
+import 'package:sippylife_assesment/core/routes/app_router.dart';
 
 class App extends ConsumerWidget {
   App({super.key});

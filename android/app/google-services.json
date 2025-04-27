@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "45050320623",
+    "project_id": "shop-with-friend",
+    "storage_bucket": "shop-with-friend.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:45050320623:android:11d8a2516d5b5669dd6d1a",
+        "android_client_info": {
+          "package_name": "com.example.sippylife_assesment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUsrlGVZ7NZmJ-FZwrAxdOlTEbAwWsMqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

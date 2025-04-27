@@ -18,56 +18,50 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SessionFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() creationFailed,
-    required TResult Function() sessionExpired,
+    required TResult Function(String? message) databaseError,
     required TResult Function() notFound,
-    required TResult Function() permissionDenied,
+    required TResult Function() sessionExpired,
     required TResult Function() unknownError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? creationFailed,
-    TResult? Function()? sessionExpired,
+    TResult? Function(String? message)? databaseError,
     TResult? Function()? notFound,
-    TResult? Function()? permissionDenied,
+    TResult? Function()? sessionExpired,
     TResult? Function()? unknownError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? creationFailed,
-    TResult Function()? sessionExpired,
+    TResult Function(String? message)? databaseError,
     TResult Function()? notFound,
-    TResult Function()? permissionDenied,
+    TResult Function()? sessionExpired,
     TResult Function()? unknownError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CreationFailed value) creationFailed,
-    required TResult Function(_SessionExpired value) sessionExpired,
+    required TResult Function(_DatabaseError value) databaseError,
     required TResult Function(_NotFound value) notFound,
-    required TResult Function(_PermissionDenied value) permissionDenied,
+    required TResult Function(_SessionExpired value) sessionExpired,
     required TResult Function(_UnknownError value) unknownError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CreationFailed value)? creationFailed,
-    TResult? Function(_SessionExpired value)? sessionExpired,
+    TResult? Function(_DatabaseError value)? databaseError,
     TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_PermissionDenied value)? permissionDenied,
+    TResult? Function(_SessionExpired value)? sessionExpired,
     TResult? Function(_UnknownError value)? unknownError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreationFailed value)? creationFailed,
-    TResult Function(_SessionExpired value)? sessionExpired,
+    TResult Function(_DatabaseError value)? databaseError,
     TResult Function(_NotFound value)? notFound,
-    TResult Function(_PermissionDenied value)? permissionDenied,
+    TResult Function(_SessionExpired value)? sessionExpired,
     TResult Function(_UnknownError value)? unknownError,
     required TResult orElse(),
   }) =>
@@ -96,79 +90,103 @@ class _$SessionFailureCopyWithImpl<$Res, $Val extends SessionFailure>
 }
 
 /// @nodoc
-abstract class _$$CreationFailedImplCopyWith<$Res> {
-  factory _$$CreationFailedImplCopyWith(_$CreationFailedImpl value,
-          $Res Function(_$CreationFailedImpl) then) =
-      __$$CreationFailedImplCopyWithImpl<$Res>;
+abstract class _$$DatabaseErrorImplCopyWith<$Res> {
+  factory _$$DatabaseErrorImplCopyWith(
+          _$DatabaseErrorImpl value, $Res Function(_$DatabaseErrorImpl) then) =
+      __$$DatabaseErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? message});
 }
 
 /// @nodoc
-class __$$CreationFailedImplCopyWithImpl<$Res>
-    extends _$SessionFailureCopyWithImpl<$Res, _$CreationFailedImpl>
-    implements _$$CreationFailedImplCopyWith<$Res> {
-  __$$CreationFailedImplCopyWithImpl(
-      _$CreationFailedImpl _value, $Res Function(_$CreationFailedImpl) _then)
+class __$$DatabaseErrorImplCopyWithImpl<$Res>
+    extends _$SessionFailureCopyWithImpl<$Res, _$DatabaseErrorImpl>
+    implements _$$DatabaseErrorImplCopyWith<$Res> {
+  __$$DatabaseErrorImplCopyWithImpl(
+      _$DatabaseErrorImpl _value, $Res Function(_$DatabaseErrorImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SessionFailure
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_$DatabaseErrorImpl(
+      freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$CreationFailedImpl extends _CreationFailed {
-  const _$CreationFailedImpl() : super._();
+class _$DatabaseErrorImpl extends _DatabaseError {
+  const _$DatabaseErrorImpl(this.message) : super._();
+
+  @override
+  final String? message;
 
   @override
   String toString() {
-    return 'SessionFailure.creationFailed()';
+    return 'SessionFailure.databaseError(message: $message)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CreationFailedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$DatabaseErrorImpl &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of SessionFailure
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DatabaseErrorImplCopyWith<_$DatabaseErrorImpl> get copyWith =>
+      __$$DatabaseErrorImplCopyWithImpl<_$DatabaseErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() creationFailed,
-    required TResult Function() sessionExpired,
+    required TResult Function(String? message) databaseError,
     required TResult Function() notFound,
-    required TResult Function() permissionDenied,
+    required TResult Function() sessionExpired,
     required TResult Function() unknownError,
   }) {
-    return creationFailed();
+    return databaseError(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? creationFailed,
-    TResult? Function()? sessionExpired,
+    TResult? Function(String? message)? databaseError,
     TResult? Function()? notFound,
-    TResult? Function()? permissionDenied,
+    TResult? Function()? sessionExpired,
     TResult? Function()? unknownError,
   }) {
-    return creationFailed?.call();
+    return databaseError?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? creationFailed,
-    TResult Function()? sessionExpired,
+    TResult Function(String? message)? databaseError,
     TResult Function()? notFound,
-    TResult Function()? permissionDenied,
+    TResult Function()? sessionExpired,
     TResult Function()? unknownError,
     required TResult orElse(),
   }) {
-    if (creationFailed != null) {
-      return creationFailed();
+    if (databaseError != null) {
+      return databaseError(message);
     }
     return orElse();
   }
@@ -176,171 +194,52 @@ class _$CreationFailedImpl extends _CreationFailed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CreationFailed value) creationFailed,
-    required TResult Function(_SessionExpired value) sessionExpired,
+    required TResult Function(_DatabaseError value) databaseError,
     required TResult Function(_NotFound value) notFound,
-    required TResult Function(_PermissionDenied value) permissionDenied,
+    required TResult Function(_SessionExpired value) sessionExpired,
     required TResult Function(_UnknownError value) unknownError,
   }) {
-    return creationFailed(this);
+    return databaseError(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CreationFailed value)? creationFailed,
-    TResult? Function(_SessionExpired value)? sessionExpired,
+    TResult? Function(_DatabaseError value)? databaseError,
     TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_PermissionDenied value)? permissionDenied,
+    TResult? Function(_SessionExpired value)? sessionExpired,
     TResult? Function(_UnknownError value)? unknownError,
   }) {
-    return creationFailed?.call(this);
+    return databaseError?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreationFailed value)? creationFailed,
-    TResult Function(_SessionExpired value)? sessionExpired,
+    TResult Function(_DatabaseError value)? databaseError,
     TResult Function(_NotFound value)? notFound,
-    TResult Function(_PermissionDenied value)? permissionDenied,
+    TResult Function(_SessionExpired value)? sessionExpired,
     TResult Function(_UnknownError value)? unknownError,
     required TResult orElse(),
   }) {
-    if (creationFailed != null) {
-      return creationFailed(this);
+    if (databaseError != null) {
+      return databaseError(this);
     }
     return orElse();
   }
 }
 
-abstract class _CreationFailed extends SessionFailure {
-  const factory _CreationFailed() = _$CreationFailedImpl;
-  const _CreationFailed._() : super._();
-}
+abstract class _DatabaseError extends SessionFailure {
+  const factory _DatabaseError(final String? message) = _$DatabaseErrorImpl;
+  const _DatabaseError._() : super._();
 
-/// @nodoc
-abstract class _$$SessionExpiredImplCopyWith<$Res> {
-  factory _$$SessionExpiredImplCopyWith(_$SessionExpiredImpl value,
-          $Res Function(_$SessionExpiredImpl) then) =
-      __$$SessionExpiredImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SessionExpiredImplCopyWithImpl<$Res>
-    extends _$SessionFailureCopyWithImpl<$Res, _$SessionExpiredImpl>
-    implements _$$SessionExpiredImplCopyWith<$Res> {
-  __$$SessionExpiredImplCopyWithImpl(
-      _$SessionExpiredImpl _value, $Res Function(_$SessionExpiredImpl) _then)
-      : super(_value, _then);
+  String? get message;
 
   /// Create a copy of SessionFailure
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$SessionExpiredImpl extends _SessionExpired {
-  const _$SessionExpiredImpl() : super._();
-
-  @override
-  String toString() {
-    return 'SessionFailure.sessionExpired()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SessionExpiredImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() creationFailed,
-    required TResult Function() sessionExpired,
-    required TResult Function() notFound,
-    required TResult Function() permissionDenied,
-    required TResult Function() unknownError,
-  }) {
-    return sessionExpired();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? creationFailed,
-    TResult? Function()? sessionExpired,
-    TResult? Function()? notFound,
-    TResult? Function()? permissionDenied,
-    TResult? Function()? unknownError,
-  }) {
-    return sessionExpired?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? creationFailed,
-    TResult Function()? sessionExpired,
-    TResult Function()? notFound,
-    TResult Function()? permissionDenied,
-    TResult Function()? unknownError,
-    required TResult orElse(),
-  }) {
-    if (sessionExpired != null) {
-      return sessionExpired();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CreationFailed value) creationFailed,
-    required TResult Function(_SessionExpired value) sessionExpired,
-    required TResult Function(_NotFound value) notFound,
-    required TResult Function(_PermissionDenied value) permissionDenied,
-    required TResult Function(_UnknownError value) unknownError,
-  }) {
-    return sessionExpired(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CreationFailed value)? creationFailed,
-    TResult? Function(_SessionExpired value)? sessionExpired,
-    TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_PermissionDenied value)? permissionDenied,
-    TResult? Function(_UnknownError value)? unknownError,
-  }) {
-    return sessionExpired?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreationFailed value)? creationFailed,
-    TResult Function(_SessionExpired value)? sessionExpired,
-    TResult Function(_NotFound value)? notFound,
-    TResult Function(_PermissionDenied value)? permissionDenied,
-    TResult Function(_UnknownError value)? unknownError,
-    required TResult orElse(),
-  }) {
-    if (sessionExpired != null) {
-      return sessionExpired(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SessionExpired extends SessionFailure {
-  const factory _SessionExpired() = _$SessionExpiredImpl;
-  const _SessionExpired._() : super._();
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DatabaseErrorImplCopyWith<_$DatabaseErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -384,10 +283,9 @@ class _$NotFoundImpl extends _NotFound {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() creationFailed,
-    required TResult Function() sessionExpired,
+    required TResult Function(String? message) databaseError,
     required TResult Function() notFound,
-    required TResult Function() permissionDenied,
+    required TResult Function() sessionExpired,
     required TResult Function() unknownError,
   }) {
     return notFound();
@@ -396,10 +294,9 @@ class _$NotFoundImpl extends _NotFound {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? creationFailed,
-    TResult? Function()? sessionExpired,
+    TResult? Function(String? message)? databaseError,
     TResult? Function()? notFound,
-    TResult? Function()? permissionDenied,
+    TResult? Function()? sessionExpired,
     TResult? Function()? unknownError,
   }) {
     return notFound?.call();
@@ -408,10 +305,9 @@ class _$NotFoundImpl extends _NotFound {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? creationFailed,
-    TResult Function()? sessionExpired,
+    TResult Function(String? message)? databaseError,
     TResult Function()? notFound,
-    TResult Function()? permissionDenied,
+    TResult Function()? sessionExpired,
     TResult Function()? unknownError,
     required TResult orElse(),
   }) {
@@ -424,10 +320,9 @@ class _$NotFoundImpl extends _NotFound {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CreationFailed value) creationFailed,
-    required TResult Function(_SessionExpired value) sessionExpired,
+    required TResult Function(_DatabaseError value) databaseError,
     required TResult Function(_NotFound value) notFound,
-    required TResult Function(_PermissionDenied value) permissionDenied,
+    required TResult Function(_SessionExpired value) sessionExpired,
     required TResult Function(_UnknownError value) unknownError,
   }) {
     return notFound(this);
@@ -436,10 +331,9 @@ class _$NotFoundImpl extends _NotFound {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CreationFailed value)? creationFailed,
-    TResult? Function(_SessionExpired value)? sessionExpired,
+    TResult? Function(_DatabaseError value)? databaseError,
     TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_PermissionDenied value)? permissionDenied,
+    TResult? Function(_SessionExpired value)? sessionExpired,
     TResult? Function(_UnknownError value)? unknownError,
   }) {
     return notFound?.call(this);
@@ -448,10 +342,9 @@ class _$NotFoundImpl extends _NotFound {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreationFailed value)? creationFailed,
-    TResult Function(_SessionExpired value)? sessionExpired,
+    TResult Function(_DatabaseError value)? databaseError,
     TResult Function(_NotFound value)? notFound,
-    TResult Function(_PermissionDenied value)? permissionDenied,
+    TResult Function(_SessionExpired value)? sessionExpired,
     TResult Function(_UnknownError value)? unknownError,
     required TResult orElse(),
   }) {
@@ -468,18 +361,18 @@ abstract class _NotFound extends SessionFailure {
 }
 
 /// @nodoc
-abstract class _$$PermissionDeniedImplCopyWith<$Res> {
-  factory _$$PermissionDeniedImplCopyWith(_$PermissionDeniedImpl value,
-          $Res Function(_$PermissionDeniedImpl) then) =
-      __$$PermissionDeniedImplCopyWithImpl<$Res>;
+abstract class _$$SessionExpiredImplCopyWith<$Res> {
+  factory _$$SessionExpiredImplCopyWith(_$SessionExpiredImpl value,
+          $Res Function(_$SessionExpiredImpl) then) =
+      __$$SessionExpiredImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$PermissionDeniedImplCopyWithImpl<$Res>
-    extends _$SessionFailureCopyWithImpl<$Res, _$PermissionDeniedImpl>
-    implements _$$PermissionDeniedImplCopyWith<$Res> {
-  __$$PermissionDeniedImplCopyWithImpl(_$PermissionDeniedImpl _value,
-      $Res Function(_$PermissionDeniedImpl) _then)
+class __$$SessionExpiredImplCopyWithImpl<$Res>
+    extends _$SessionFailureCopyWithImpl<$Res, _$SessionExpiredImpl>
+    implements _$$SessionExpiredImplCopyWith<$Res> {
+  __$$SessionExpiredImplCopyWithImpl(
+      _$SessionExpiredImpl _value, $Res Function(_$SessionExpiredImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SessionFailure
@@ -488,18 +381,18 @@ class __$$PermissionDeniedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PermissionDeniedImpl extends _PermissionDenied {
-  const _$PermissionDeniedImpl() : super._();
+class _$SessionExpiredImpl extends _SessionExpired {
+  const _$SessionExpiredImpl() : super._();
 
   @override
   String toString() {
-    return 'SessionFailure.permissionDenied()';
+    return 'SessionFailure.sessionExpired()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$PermissionDeniedImpl);
+        (other.runtimeType == runtimeType && other is _$SessionExpiredImpl);
   }
 
   @override
@@ -508,39 +401,36 @@ class _$PermissionDeniedImpl extends _PermissionDenied {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() creationFailed,
-    required TResult Function() sessionExpired,
+    required TResult Function(String? message) databaseError,
     required TResult Function() notFound,
-    required TResult Function() permissionDenied,
+    required TResult Function() sessionExpired,
     required TResult Function() unknownError,
   }) {
-    return permissionDenied();
+    return sessionExpired();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? creationFailed,
-    TResult? Function()? sessionExpired,
+    TResult? Function(String? message)? databaseError,
     TResult? Function()? notFound,
-    TResult? Function()? permissionDenied,
+    TResult? Function()? sessionExpired,
     TResult? Function()? unknownError,
   }) {
-    return permissionDenied?.call();
+    return sessionExpired?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? creationFailed,
-    TResult Function()? sessionExpired,
+    TResult Function(String? message)? databaseError,
     TResult Function()? notFound,
-    TResult Function()? permissionDenied,
+    TResult Function()? sessionExpired,
     TResult Function()? unknownError,
     required TResult orElse(),
   }) {
-    if (permissionDenied != null) {
-      return permissionDenied();
+    if (sessionExpired != null) {
+      return sessionExpired();
     }
     return orElse();
   }
@@ -548,47 +438,44 @@ class _$PermissionDeniedImpl extends _PermissionDenied {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CreationFailed value) creationFailed,
-    required TResult Function(_SessionExpired value) sessionExpired,
+    required TResult Function(_DatabaseError value) databaseError,
     required TResult Function(_NotFound value) notFound,
-    required TResult Function(_PermissionDenied value) permissionDenied,
+    required TResult Function(_SessionExpired value) sessionExpired,
     required TResult Function(_UnknownError value) unknownError,
   }) {
-    return permissionDenied(this);
+    return sessionExpired(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CreationFailed value)? creationFailed,
-    TResult? Function(_SessionExpired value)? sessionExpired,
+    TResult? Function(_DatabaseError value)? databaseError,
     TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_PermissionDenied value)? permissionDenied,
+    TResult? Function(_SessionExpired value)? sessionExpired,
     TResult? Function(_UnknownError value)? unknownError,
   }) {
-    return permissionDenied?.call(this);
+    return sessionExpired?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreationFailed value)? creationFailed,
-    TResult Function(_SessionExpired value)? sessionExpired,
+    TResult Function(_DatabaseError value)? databaseError,
     TResult Function(_NotFound value)? notFound,
-    TResult Function(_PermissionDenied value)? permissionDenied,
+    TResult Function(_SessionExpired value)? sessionExpired,
     TResult Function(_UnknownError value)? unknownError,
     required TResult orElse(),
   }) {
-    if (permissionDenied != null) {
-      return permissionDenied(this);
+    if (sessionExpired != null) {
+      return sessionExpired(this);
     }
     return orElse();
   }
 }
 
-abstract class _PermissionDenied extends SessionFailure {
-  const factory _PermissionDenied() = _$PermissionDeniedImpl;
-  const _PermissionDenied._() : super._();
+abstract class _SessionExpired extends SessionFailure {
+  const factory _SessionExpired() = _$SessionExpiredImpl;
+  const _SessionExpired._() : super._();
 }
 
 /// @nodoc
@@ -632,10 +519,9 @@ class _$UnknownErrorImpl extends _UnknownError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() creationFailed,
-    required TResult Function() sessionExpired,
+    required TResult Function(String? message) databaseError,
     required TResult Function() notFound,
-    required TResult Function() permissionDenied,
+    required TResult Function() sessionExpired,
     required TResult Function() unknownError,
   }) {
     return unknownError();
@@ -644,10 +530,9 @@ class _$UnknownErrorImpl extends _UnknownError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? creationFailed,
-    TResult? Function()? sessionExpired,
+    TResult? Function(String? message)? databaseError,
     TResult? Function()? notFound,
-    TResult? Function()? permissionDenied,
+    TResult? Function()? sessionExpired,
     TResult? Function()? unknownError,
   }) {
     return unknownError?.call();
@@ -656,10 +541,9 @@ class _$UnknownErrorImpl extends _UnknownError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? creationFailed,
-    TResult Function()? sessionExpired,
+    TResult Function(String? message)? databaseError,
     TResult Function()? notFound,
-    TResult Function()? permissionDenied,
+    TResult Function()? sessionExpired,
     TResult Function()? unknownError,
     required TResult orElse(),
   }) {
@@ -672,10 +556,9 @@ class _$UnknownErrorImpl extends _UnknownError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CreationFailed value) creationFailed,
-    required TResult Function(_SessionExpired value) sessionExpired,
+    required TResult Function(_DatabaseError value) databaseError,
     required TResult Function(_NotFound value) notFound,
-    required TResult Function(_PermissionDenied value) permissionDenied,
+    required TResult Function(_SessionExpired value) sessionExpired,
     required TResult Function(_UnknownError value) unknownError,
   }) {
     return unknownError(this);
@@ -684,10 +567,9 @@ class _$UnknownErrorImpl extends _UnknownError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CreationFailed value)? creationFailed,
-    TResult? Function(_SessionExpired value)? sessionExpired,
+    TResult? Function(_DatabaseError value)? databaseError,
     TResult? Function(_NotFound value)? notFound,
-    TResult? Function(_PermissionDenied value)? permissionDenied,
+    TResult? Function(_SessionExpired value)? sessionExpired,
     TResult? Function(_UnknownError value)? unknownError,
   }) {
     return unknownError?.call(this);
@@ -696,10 +578,9 @@ class _$UnknownErrorImpl extends _UnknownError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreationFailed value)? creationFailed,
-    TResult Function(_SessionExpired value)? sessionExpired,
+    TResult Function(_DatabaseError value)? databaseError,
     TResult Function(_NotFound value)? notFound,
-    TResult Function(_PermissionDenied value)? permissionDenied,
+    TResult Function(_SessionExpired value)? sessionExpired,
     TResult Function(_UnknownError value)? unknownError,
     required TResult orElse(),
   }) {

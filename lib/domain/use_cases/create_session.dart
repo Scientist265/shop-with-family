@@ -1,11 +1,8 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:sippylife_assesment/domain/failures/session_failure.dart';
 import '../entities/session.dart';
 import '../repositories/session_repository.dart';
 
-
-@RoutePage()
 class CreateSession {
   final SessionRepository repository;
 

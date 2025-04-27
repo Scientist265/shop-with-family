@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+Session _$SessionFromJson(Map<String, dynamic> json) {
+  return _Session.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Session {
   String get id => throw _privateConstructorUsedError;
@@ -21,6 +25,9 @@ mixin _$Session {
   String? get friendName => throw _privateConstructorUsedError;
   bool get isActive => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
+
+  /// Serializes this Session to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   /// Create a copy of Session
   /// with the given fields replaced by the non-null parameter values.
@@ -147,7 +154,7 @@ class __$$SessionImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$SessionImpl implements _Session {
   const _$SessionImpl(
       {required this.id,
@@ -155,6 +162,9 @@ class _$SessionImpl implements _Session {
       this.friendName,
       required this.isActive,
       required this.createdAt});
+
+  factory _$SessionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SessionImplFromJson(json);
 
   @override
   final String id;
@@ -188,6 +198,7 @@ class _$SessionImpl implements _Session {
                 other.createdAt == createdAt));
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, hostName, friendName, isActive, createdAt);
@@ -199,6 +210,13 @@ class _$SessionImpl implements _Session {
   @pragma('vm:prefer-inline')
   _$$SessionImplCopyWith<_$SessionImpl> get copyWith =>
       __$$SessionImplCopyWithImpl<_$SessionImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$SessionImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Session implements Session {
@@ -208,6 +226,8 @@ abstract class _Session implements Session {
       final String? friendName,
       required final bool isActive,
       required final DateTime createdAt}) = _$SessionImpl;
+
+  factory _Session.fromJson(Map<String, dynamic> json) = _$SessionImpl.fromJson;
 
   @override
   String get id;

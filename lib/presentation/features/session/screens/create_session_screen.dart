@@ -1,10 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:sippylife_assesment/core/utils/toast.dart';
 import 'package:sippylife_assesment/presentation/features/session/providers/providers.dart';
 
+@RoutePage()
 class CreateSessionScreen extends ConsumerStatefulWidget {
+  static var page;
+
   const CreateSessionScreen({super.key});
 
   @override
