@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:sippylife_assesment/presentation/features/carts/screens/cart_invite_screen.dart';
+import 'package:sippylife_assesment/presentation/features/carts/screens/invite_friend_landpage.dart';
 import 'package:sippylife_assesment/presentation/features/carts/screens/shared_cart_screen.dart';
 import 'package:sippylife_assesment/presentation/features/confirmation/screens/confirmation_screen.dart';
 import 'package:sippylife_assesment/presentation/features/home/screens/home_screen.dart';
@@ -13,12 +15,17 @@ part 'app_router.gr.dart';
 class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: HomeRoute.page, initial: true),
-        AutoRoute(page: CreateSessionRoute.page),
-        AutoRoute(page: JoinSessionRoute.page, path: '/join-session'),
-        AutoRoute(page: JoinSessionWithIdRoute.page, path: '/join/:sessionId'),
-        AutoRoute(page: ProductListRoute.page, path: '/products/:sessionId'),
-        AutoRoute(page: SharedCartRoute.page, path: '/shared-cart/:sessionId'),
-        AutoRoute(page: ConfirmationRoute.page),
-      ];
+    AutoRoute(page: HomeRoute.page, initial: true),
+    AutoRoute(page: CartInviteRoute.page),
+    AutoRoute(page: CreateSessionRoute.page),
+    AutoRoute(page: JoinSessionRoute.page, path: '/join-session'),
+    AutoRoute(page: JoinSessionWithIdRoute.page, path: '/join/:sessionId'),
+    AutoRoute(page: ProductListRoute.page, path: '/products/:sessionId'),
+    AutoRoute(page: SharedCartRoute.page, path: '/cart/:sessionId'),
+    AutoRoute(page: ConfirmationRoute.page),
+    AutoRoute(
+      page: InviteLandingRoute.page,
+      path: '/InviteLandingRoute/:sessionId',
+    ),
+  ];
 }

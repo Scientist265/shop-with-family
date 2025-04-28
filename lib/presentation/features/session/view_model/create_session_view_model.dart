@@ -1,4 +1,3 @@
-// lib/presentation/features/session/view_models/create_session_view_model.dart
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:sippylife_assesment/domain/use_cases/create_session.dart';

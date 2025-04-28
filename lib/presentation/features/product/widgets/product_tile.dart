@@ -53,12 +53,20 @@ class ProductTile extends StatelessWidget {
                         fontSize: 16,
                       ),
                     ),
-                    IconButton(
-                      icon: const Icon(Icons.add_shopping_cart),
-                      iconSize: 20,
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
-                      onPressed: onAdd,
+                    InkWell(
+                      onTap: onAdd,
+                      child: Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          color: Colors.teal,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        constraints: const BoxConstraints(),
+                        child: const Icon(
+                          Icons.add_shopping_cart,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ],
                 ),

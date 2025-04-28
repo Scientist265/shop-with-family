@@ -22,6 +22,7 @@ mixin _$SessionState {
   bool get isLoading => throw _privateConstructorUsedError;
   Option<SessionFailure> get failure => throw _privateConstructorUsedError;
   bool get canJoin => throw _privateConstructorUsedError;
+  bool get isJoined => throw _privateConstructorUsedError;
 
   /// Create a copy of SessionState
   /// with the given fields replaced by the non-null parameter values.
@@ -42,7 +43,8 @@ abstract class $SessionStateCopyWith<$Res> {
       String? friendName,
       bool isLoading,
       Option<SessionFailure> failure,
-      bool canJoin});
+      bool canJoin,
+      bool isJoined});
 }
 
 /// @nodoc
@@ -66,6 +68,7 @@ class _$SessionStateCopyWithImpl<$Res, $Val extends SessionState>
     Object? isLoading = null,
     Object? failure = null,
     Object? canJoin = null,
+    Object? isJoined = null,
   }) {
     return _then(_value.copyWith(
       sessionId: freezed == sessionId
@@ -92,6 +95,10 @@ class _$SessionStateCopyWithImpl<$Res, $Val extends SessionState>
           ? _value.canJoin
           : canJoin // ignore: cast_nullable_to_non_nullable
               as bool,
+      isJoined: null == isJoined
+          ? _value.isJoined
+          : isJoined // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -110,7 +117,8 @@ abstract class _$$SessionStateImplCopyWith<$Res>
       String? friendName,
       bool isLoading,
       Option<SessionFailure> failure,
-      bool canJoin});
+      bool canJoin,
+      bool isJoined});
 }
 
 /// @nodoc
@@ -132,6 +140,7 @@ class __$$SessionStateImplCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? failure = null,
     Object? canJoin = null,
+    Object? isJoined = null,
   }) {
     return _then(_$SessionStateImpl(
       sessionId: freezed == sessionId
@@ -158,6 +167,10 @@ class __$$SessionStateImplCopyWithImpl<$Res>
           ? _value.canJoin
           : canJoin // ignore: cast_nullable_to_non_nullable
               as bool,
+      isJoined: null == isJoined
+          ? _value.isJoined
+          : isJoined // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -171,7 +184,8 @@ class _$SessionStateImpl implements _SessionState {
       required this.friendName,
       required this.isLoading,
       required this.failure,
-      required this.canJoin});
+      required this.canJoin,
+      required this.isJoined});
 
   @override
   final String? sessionId;
@@ -185,10 +199,12 @@ class _$SessionStateImpl implements _SessionState {
   final Option<SessionFailure> failure;
   @override
   final bool canJoin;
+  @override
+  final bool isJoined;
 
   @override
   String toString() {
-    return 'SessionState(sessionId: $sessionId, hostName: $hostName, friendName: $friendName, isLoading: $isLoading, failure: $failure, canJoin: $canJoin)';
+    return 'SessionState(sessionId: $sessionId, hostName: $hostName, friendName: $friendName, isLoading: $isLoading, failure: $failure, canJoin: $canJoin, isJoined: $isJoined)';
   }
 
   @override
@@ -205,12 +221,14 @@ class _$SessionStateImpl implements _SessionState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.failure, failure) || other.failure == failure) &&
-            (identical(other.canJoin, canJoin) || other.canJoin == canJoin));
+            (identical(other.canJoin, canJoin) || other.canJoin == canJoin) &&
+            (identical(other.isJoined, isJoined) ||
+                other.isJoined == isJoined));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, sessionId, hostName, friendName,
-      isLoading, failure, canJoin);
+      isLoading, failure, canJoin, isJoined);
 
   /// Create a copy of SessionState
   /// with the given fields replaced by the non-null parameter values.
@@ -228,7 +246,8 @@ abstract class _SessionState implements SessionState {
       required final String? friendName,
       required final bool isLoading,
       required final Option<SessionFailure> failure,
-      required final bool canJoin}) = _$SessionStateImpl;
+      required final bool canJoin,
+      required final bool isJoined}) = _$SessionStateImpl;
 
   @override
   String? get sessionId;
@@ -242,6 +261,8 @@ abstract class _SessionState implements SessionState {
   Option<SessionFailure> get failure;
   @override
   bool get canJoin;
+  @override
+  bool get isJoined;
 
   /// Create a copy of SessionState
   /// with the given fields replaced by the non-null parameter values.

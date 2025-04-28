@@ -1,10 +1,8 @@
-// lib/presentation/features/home/screens/home_screen.dart
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sippylife_assesment/core/routes/app_router.dart';
 
-// lib/presentation/features/home/screens/home_screen.dart
 @RoutePage()
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});

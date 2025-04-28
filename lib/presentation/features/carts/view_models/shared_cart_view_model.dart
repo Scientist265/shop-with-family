@@ -1,8 +1,10 @@
 // lib/presentation/features/cart/view_models/shared_cart_view_model.dart
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:sippylife_assesment/core/utils/toast.dart';
 import 'package:sippylife_assesment/domain/entities/added_by.dart';
 import 'package:sippylife_assesment/domain/entities/cart_item.dart';
 import 'package:sippylife_assesment/domain/entities/product.dart';
@@ -43,12 +45,18 @@ class SharedCartViewModel extends StateNotifier<SharedCartState> {
     _subscribeToCart();
   }
 
-  Future<void> completeSession() async {
+  Future<void> completeSession(BuildContext context) async {
     state = state.copyWith(isLoading: true);
     final result = await _repository.completeSession(_sessionId);
     state = result.fold(
       (failure) => state.copyWith(isLoading: false, failure: some(failure)),
       (_) => state.copyWith(isLoading: false),
+    );
+    Toast(context).show(
+      result.fold(
+        (failure) => 'Failed to complete session: ${failure.message}',
+        (_) => 'Session completed successfully',
+      ),
     );
     _cartSubscription?.cancel();
   }

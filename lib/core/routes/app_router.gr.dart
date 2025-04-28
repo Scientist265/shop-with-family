@@ -11,10 +11,16 @@ part of 'app_router.dart';
 
 abstract class _$AppRouter extends RootStackRouter {
   // ignore: unused_element
-  _$AppRouter();
+  _$AppRouter({super.navigatorKey});
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    CartInviteRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CartInviteScreen(),
+      );
+    },
     ConfirmationRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -31,6 +37,16 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const HomeScreen(),
+      );
+    },
+    InviteLandingRoute.name: (routeData) {
+      final args = routeData.argsAs<InviteLandingRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: InviteLandingScreen(
+          key: args.key,
+          sessionId: args.sessionId,
+        ),
       );
     },
     JoinSessionRoute.name: (routeData) {
@@ -73,6 +89,20 @@ abstract class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
+/// [CartInviteScreen]
+class CartInviteRoute extends PageRouteInfo<void> {
+  const CartInviteRoute({List<PageRouteInfo>? children})
+      : super(
+          CartInviteRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CartInviteRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [ConfirmationScreen]
 class ConfirmationRoute extends PageRouteInfo<void> {
   const ConfirmationRoute({List<PageRouteInfo>? children})
@@ -112,6 +142,44 @@ class HomeRoute extends PageRouteInfo<void> {
   static const String name = 'HomeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [InviteLandingScreen]
+class InviteLandingRoute extends PageRouteInfo<InviteLandingRouteArgs> {
+  InviteLandingRoute({
+    Key? key,
+    required String sessionId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          InviteLandingRoute.name,
+          args: InviteLandingRouteArgs(
+            key: key,
+            sessionId: sessionId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'InviteLandingRoute';
+
+  static const PageInfo<InviteLandingRouteArgs> page =
+      PageInfo<InviteLandingRouteArgs>(name);
+}
+
+class InviteLandingRouteArgs {
+  const InviteLandingRouteArgs({
+    this.key,
+    required this.sessionId,
+  });
+
+  final Key? key;
+
+  final String sessionId;
+
+  @override
+  String toString() {
+    return 'InviteLandingRouteArgs{key: $key, sessionId: $sessionId}';
+  }
 }
 
 /// generated route for

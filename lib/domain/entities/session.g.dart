@@ -6,13 +6,14 @@ part of 'session.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+
 Map<String, dynamic> _$SessionToJson(Session instance) => <String, dynamic>{
-  'id': instance.id,
-  'hostName': instance.hostName,
-  'friendName': instance.friendName,
-  'isActive': instance.isActive,
-  'createdAt': instance.createdAt.toIso8601String(),
-};
+      'id': instance.id,
+      'hostName': instance.hostName,
+      'friendName': instance.friendName,
+      'isActive': instance.isActive,
+      'createdAt': instance.createdAt.toIso8601String(),
+    };
 
 _$SessionImpl _$$SessionImplFromJson(Map<String, dynamic> json) =>
     _$SessionImpl(

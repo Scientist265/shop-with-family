@@ -23,7 +23,7 @@ class SessionRepositoryImpl implements SessionRepository {
       await _firestore.collection('sessions').doc(session.id).set(session.toJson());
       return right(session);
     } on FirebaseException catch (e) {
-      return left(SessionFailure.databaseError(e.message));
+      return left(SessionFailure.databaseError(e.message!));
     } catch (e) {
       return left(const SessionFailure.unknownError());
     }
@@ -49,7 +49,7 @@ class SessionRepositoryImpl implements SessionRepository {
 
       return right(unit);
     } on FirebaseException catch (e) {
-      return left(SessionFailure.databaseError(e.message));
+      return left(SessionFailure.databaseError(e.message!));
     } catch (e) {
       return left(const SessionFailure.unknownError());
     }
@@ -66,7 +66,7 @@ class SessionRepositoryImpl implements SessionRepository {
 
       return right(Session.fromJson(doc.data()!));
     } on FirebaseException catch (e) {
-      return left(SessionFailure.databaseError(e.message));
+      return left(SessionFailure.databaseError(e.message!));
     } catch (e) {
       return left(const SessionFailure.unknownError());
     }

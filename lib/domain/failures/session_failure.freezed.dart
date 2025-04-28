@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SessionFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? message) databaseError,
+    required TResult Function(String message) databaseError,
     required TResult Function() notFound,
     required TResult Function() sessionExpired,
     required TResult Function() unknownError,
@@ -26,7 +26,7 @@ mixin _$SessionFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? message)? databaseError,
+    TResult? Function(String message)? databaseError,
     TResult? Function()? notFound,
     TResult? Function()? sessionExpired,
     TResult? Function()? unknownError,
@@ -34,7 +34,7 @@ mixin _$SessionFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? message)? databaseError,
+    TResult Function(String message)? databaseError,
     TResult Function()? notFound,
     TResult Function()? sessionExpired,
     TResult Function()? unknownError,
@@ -95,7 +95,7 @@ abstract class _$$DatabaseErrorImplCopyWith<$Res> {
           _$DatabaseErrorImpl value, $Res Function(_$DatabaseErrorImpl) then) =
       __$$DatabaseErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String? message});
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -111,13 +111,13 @@ class __$$DatabaseErrorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
     return _then(_$DatabaseErrorImpl(
-      freezed == message
+      null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
     ));
   }
 }
@@ -128,7 +128,7 @@ class _$DatabaseErrorImpl extends _DatabaseError {
   const _$DatabaseErrorImpl(this.message) : super._();
 
   @override
-  final String? message;
+  final String message;
 
   @override
   String toString() {
@@ -157,7 +157,7 @@ class _$DatabaseErrorImpl extends _DatabaseError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? message) databaseError,
+    required TResult Function(String message) databaseError,
     required TResult Function() notFound,
     required TResult Function() sessionExpired,
     required TResult Function() unknownError,
@@ -168,7 +168,7 @@ class _$DatabaseErrorImpl extends _DatabaseError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? message)? databaseError,
+    TResult? Function(String message)? databaseError,
     TResult? Function()? notFound,
     TResult? Function()? sessionExpired,
     TResult? Function()? unknownError,
@@ -179,7 +179,7 @@ class _$DatabaseErrorImpl extends _DatabaseError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? message)? databaseError,
+    TResult Function(String message)? databaseError,
     TResult Function()? notFound,
     TResult Function()? sessionExpired,
     TResult Function()? unknownError,
@@ -230,10 +230,10 @@ class _$DatabaseErrorImpl extends _DatabaseError {
 }
 
 abstract class _DatabaseError extends SessionFailure {
-  const factory _DatabaseError(final String? message) = _$DatabaseErrorImpl;
+  const factory _DatabaseError(final String message) = _$DatabaseErrorImpl;
   const _DatabaseError._() : super._();
 
-  String? get message;
+  String get message;
 
   /// Create a copy of SessionFailure
   /// with the given fields replaced by the non-null parameter values.
@@ -283,7 +283,7 @@ class _$NotFoundImpl extends _NotFound {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? message) databaseError,
+    required TResult Function(String message) databaseError,
     required TResult Function() notFound,
     required TResult Function() sessionExpired,
     required TResult Function() unknownError,
@@ -294,7 +294,7 @@ class _$NotFoundImpl extends _NotFound {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? message)? databaseError,
+    TResult? Function(String message)? databaseError,
     TResult? Function()? notFound,
     TResult? Function()? sessionExpired,
     TResult? Function()? unknownError,
@@ -305,7 +305,7 @@ class _$NotFoundImpl extends _NotFound {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? message)? databaseError,
+    TResult Function(String message)? databaseError,
     TResult Function()? notFound,
     TResult Function()? sessionExpired,
     TResult Function()? unknownError,
@@ -401,7 +401,7 @@ class _$SessionExpiredImpl extends _SessionExpired {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? message) databaseError,
+    required TResult Function(String message) databaseError,
     required TResult Function() notFound,
     required TResult Function() sessionExpired,
     required TResult Function() unknownError,
@@ -412,7 +412,7 @@ class _$SessionExpiredImpl extends _SessionExpired {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? message)? databaseError,
+    TResult? Function(String message)? databaseError,
     TResult? Function()? notFound,
     TResult? Function()? sessionExpired,
     TResult? Function()? unknownError,
@@ -423,7 +423,7 @@ class _$SessionExpiredImpl extends _SessionExpired {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? message)? databaseError,
+    TResult Function(String message)? databaseError,
     TResult Function()? notFound,
     TResult Function()? sessionExpired,
     TResult Function()? unknownError,
@@ -519,7 +519,7 @@ class _$UnknownErrorImpl extends _UnknownError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? message) databaseError,
+    required TResult Function(String message) databaseError,
     required TResult Function() notFound,
     required TResult Function() sessionExpired,
     required TResult Function() unknownError,
@@ -530,7 +530,7 @@ class _$UnknownErrorImpl extends _UnknownError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String? message)? databaseError,
+    TResult? Function(String message)? databaseError,
     TResult? Function()? notFound,
     TResult? Function()? sessionExpired,
     TResult? Function()? unknownError,
@@ -541,7 +541,7 @@ class _$UnknownErrorImpl extends _UnknownError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? message)? databaseError,
+    TResult Function(String message)? databaseError,
     TResult Function()? notFound,
     TResult Function()? sessionExpired,
     TResult Function()? unknownError,

@@ -73,7 +73,7 @@ class _SharedCartScreenState extends ConsumerState<SharedCartScreen> {
                     );
 
                     if (confirmed == true) {
-                      await viewModel.completeSession();
+                      await viewModel.completeSession(context);
                       if (mounted) {
                         context.router.push(const ConfirmationRoute());
                       }
