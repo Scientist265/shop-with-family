@@ -23,6 +23,7 @@ mixin _$SessionState {
   Option<SessionFailure> get failure => throw _privateConstructorUsedError;
   bool get canJoin => throw _privateConstructorUsedError;
   bool get isJoined => throw _privateConstructorUsedError;
+  List<String> get participants => throw _privateConstructorUsedError;
 
   /// Create a copy of SessionState
   /// with the given fields replaced by the non-null parameter values.
@@ -44,7 +45,8 @@ abstract class $SessionStateCopyWith<$Res> {
       bool isLoading,
       Option<SessionFailure> failure,
       bool canJoin,
-      bool isJoined});
+      bool isJoined,
+      List<String> participants});
 }
 
 /// @nodoc
@@ -69,6 +71,7 @@ class _$SessionStateCopyWithImpl<$Res, $Val extends SessionState>
     Object? failure = null,
     Object? canJoin = null,
     Object? isJoined = null,
+    Object? participants = null,
   }) {
     return _then(_value.copyWith(
       sessionId: freezed == sessionId
@@ -99,6 +102,10 @@ class _$SessionStateCopyWithImpl<$Res, $Val extends SessionState>
           ? _value.isJoined
           : isJoined // ignore: cast_nullable_to_non_nullable
               as bool,
+      participants: null == participants
+          ? _value.participants
+          : participants // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -118,7 +125,8 @@ abstract class _$$SessionStateImplCopyWith<$Res>
       bool isLoading,
       Option<SessionFailure> failure,
       bool canJoin,
-      bool isJoined});
+      bool isJoined,
+      List<String> participants});
 }
 
 /// @nodoc
@@ -141,6 +149,7 @@ class __$$SessionStateImplCopyWithImpl<$Res>
     Object? failure = null,
     Object? canJoin = null,
     Object? isJoined = null,
+    Object? participants = null,
   }) {
     return _then(_$SessionStateImpl(
       sessionId: freezed == sessionId
@@ -171,6 +180,10 @@ class __$$SessionStateImplCopyWithImpl<$Res>
           ? _value.isJoined
           : isJoined // ignore: cast_nullable_to_non_nullable
               as bool,
+      participants: null == participants
+          ? _value._participants
+          : participants // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -185,7 +198,9 @@ class _$SessionStateImpl implements _SessionState {
       required this.isLoading,
       required this.failure,
       required this.canJoin,
-      required this.isJoined});
+      required this.isJoined,
+      required final List<String> participants})
+      : _participants = participants;
 
   @override
   final String? sessionId;
@@ -201,10 +216,17 @@ class _$SessionStateImpl implements _SessionState {
   final bool canJoin;
   @override
   final bool isJoined;
+  final List<String> _participants;
+  @override
+  List<String> get participants {
+    if (_participants is EqualUnmodifiableListView) return _participants;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_participants);
+  }
 
   @override
   String toString() {
-    return 'SessionState(sessionId: $sessionId, hostName: $hostName, friendName: $friendName, isLoading: $isLoading, failure: $failure, canJoin: $canJoin, isJoined: $isJoined)';
+    return 'SessionState(sessionId: $sessionId, hostName: $hostName, friendName: $friendName, isLoading: $isLoading, failure: $failure, canJoin: $canJoin, isJoined: $isJoined, participants: $participants)';
   }
 
   @override
@@ -223,12 +245,22 @@ class _$SessionStateImpl implements _SessionState {
             (identical(other.failure, failure) || other.failure == failure) &&
             (identical(other.canJoin, canJoin) || other.canJoin == canJoin) &&
             (identical(other.isJoined, isJoined) ||
-                other.isJoined == isJoined));
+                other.isJoined == isJoined) &&
+            const DeepCollectionEquality()
+                .equals(other._participants, _participants));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, sessionId, hostName, friendName,
-      isLoading, failure, canJoin, isJoined);
+  int get hashCode => Object.hash(
+      runtimeType,
+      sessionId,
+      hostName,
+      friendName,
+      isLoading,
+      failure,
+      canJoin,
+      isJoined,
+      const DeepCollectionEquality().hash(_participants));
 
   /// Create a copy of SessionState
   /// with the given fields replaced by the non-null parameter values.
@@ -247,7 +279,8 @@ abstract class _SessionState implements SessionState {
       required final bool isLoading,
       required final Option<SessionFailure> failure,
       required final bool canJoin,
-      required final bool isJoined}) = _$SessionStateImpl;
+      required final bool isJoined,
+      required final List<String> participants}) = _$SessionStateImpl;
 
   @override
   String? get sessionId;
@@ -263,6 +296,8 @@ abstract class _SessionState implements SessionState {
   bool get canJoin;
   @override
   bool get isJoined;
+  @override
+  List<String> get participants;
 
   /// Create a copy of SessionState
   /// with the given fields replaced by the non-null parameter values.

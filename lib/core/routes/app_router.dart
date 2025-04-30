@@ -16,16 +16,11 @@ class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
     AutoRoute(page: HomeRoute.page, initial: true),
-    AutoRoute(page: CartInviteRoute.page),
     AutoRoute(page: CreateSessionRoute.page),
-    AutoRoute(page: JoinSessionRoute.page, path: '/join-session'),
-    AutoRoute(page: JoinSessionWithIdRoute.page, path: '/join/:sessionId'),
+    AutoRoute(page: CartInviteRoute.page),
+    AutoRoute(page: JoinSessionWithIdRoute.page, path: '/session/:sessionId'),
     AutoRoute(page: ProductListRoute.page, path: '/products/:sessionId'),
     AutoRoute(page: SharedCartRoute.page, path: '/cart/:sessionId'),
     AutoRoute(page: ConfirmationRoute.page),
-    AutoRoute(
-      page: InviteLandingRoute.page,
-      path: '/InviteLandingRoute/:sessionId',
-    ),
   ];
 }

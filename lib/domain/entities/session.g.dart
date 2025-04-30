@@ -7,6 +7,7 @@ part of 'session.dart';
 // **************************************************************************
 
 
+
 Map<String, dynamic> _$SessionToJson(Session instance) => <String, dynamic>{
       'id': instance.id,
       'hostName': instance.hostName,

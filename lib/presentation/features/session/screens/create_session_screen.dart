@@ -2,8 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:clipboard/clipboard.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:sippylife_assesment/core/routes/app_router.dart';
 import 'package:sippylife_assesment/core/utils/toast.dart';
 import 'package:sippylife_assesment/presentation/features/session/providers/providers.dart';
+import 'package:sippylife_assesment/presentation/features/session/view_model/create_session_view_model.dart';
 
 @RoutePage()
 class CreateSessionScreen extends ConsumerStatefulWidget {
@@ -29,6 +32,17 @@ class _CreateSessionScreenState extends ConsumerState<CreateSessionScreen> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(createSessionViewModelProvider);
+    ref.listen<CreateSessionState>(createSessionViewModelProvider, (
+      prev,
+      curr,
+    ) {
+      curr.maybeWhen(
+        created: (session) {
+          context.router.push(ProductListRoute(sessionId: session.id));
+        },
+        orElse: () {},
+      );
+    });
 
     return Scaffold(
       appBar: AppBar(title: const Text('Create Shopping Session')),
@@ -95,9 +109,10 @@ class _CreateSessionScreenState extends ConsumerState<CreateSessionScreen> {
                                 FlutterClipboard.copy(
                                   createdState.session.id,
                                 ).then((_) {
-                                  Toast(context).show(
-                                    'Session ID copied to clipboard',
-                                    ToastType.success,
+                                  Toast.show(
+                                    context: context,
+                                    message: 'Session ID copied to clipboard',
+                                    type: ToastType.success,
                                   );
                                 });
                               },
@@ -105,16 +120,6 @@ class _CreateSessionScreenState extends ConsumerState<CreateSessionScreen> {
                               label: const Text('Copy ID'),
                             ),
                             const SizedBox(width: 20),
-                            ElevatedButton.icon(
-                              onPressed: () {
-                                Toast(context).show(
-                                  'Invite link sent to your email',
-                                  ToastType.success,
-                                );
-                              },
-                              icon: const Icon(Icons.email),
-                              label: const Text('Send Invite'),
-                            ),
                           ],
                         ),
                       ],
@@ -135,6 +140,25 @@ class _CreateSessionScreenState extends ConsumerState<CreateSessionScreen> {
           ),
         ),
       ),
+      floatingActionButton: state.maybeMap(
+        created:
+            (createdState) => FloatingActionButton(
+              onPressed: () => _shareLink(context, createdState.session.id),
+              child: const Icon(Icons.share),
+            ),
+        orElse: () => null,
+      ),
     );
+  }
+
+  void _shareLink(BuildContext context, String sessionId) {
+    final inviteLink = 'app://shop/session/$sessionId';
+    FlutterClipboard.copy(inviteLink);
+    Toast.show(
+      context: context,
+      message: 'Invite link copied to clipboard',
+      type: ToastType.success,
+    );
+    SharePlus.instance.share(ShareParams(text: inviteLink));
   }
 }

@@ -26,7 +26,11 @@ class FirebaseCartRepository implements CartRepository {
           .doc(sessionId)
           .collection('cart')
           .doc(item.product.id)
-          .set(item.toJson());
+          .set({
+            'quantity': FieldValue.increment(item.quantity),
+            ...item.toJson(),
+          }, SetOptions(merge: true));
+
       return right(unit);
     } catch (e) {
       return left(const CartFailure.databaseError());

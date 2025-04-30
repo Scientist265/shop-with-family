@@ -52,25 +52,27 @@ class SharedCartViewModel extends StateNotifier<SharedCartState> {
       (failure) => state.copyWith(isLoading: false, failure: some(failure)),
       (_) => state.copyWith(isLoading: false),
     );
-    Toast(context).show(
-      result.fold(
+
+    Toast.show(
+  context: context,
+  message:result.fold(
         (failure) => 'Failed to complete session: ${failure.message}',
         (_) => 'Session completed successfully',
       ),
-    );
+  type: ToastType.success,
+);
+
     _cartSubscription?.cancel();
   }
 
   void _subscribeToCart() {
-    _cartSubscription = _repository
-        .watchCartItems(_sessionId)
-        .listen(
-          (items) =>
-              state = state.copyWith(
-                items: items,
-                totalPrice: _calculateTotal(items),
-              ),
-        );
+    _cartSubscription = _repository.watchCartItems(_sessionId).listen((items) {
+      final total = items.fold(
+        0.0,
+        (sum, item) => sum + (item.product.price * item.quantity),
+      );
+      state = state.copyWith(items: items, totalPrice: total);
+    });
   }
 
   double _calculateTotal(List<CartItem> items) {

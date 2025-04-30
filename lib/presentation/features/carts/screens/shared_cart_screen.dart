@@ -32,7 +32,12 @@ class _SharedCartScreenState extends ConsumerState<SharedCartScreen> {
               itemCount: state.items.length,
               itemBuilder:
                   (ctx, i) => ListTile(
-                    title: Text(state.items[i].product.name),
+                    title: Row(
+                      children: [
+                        Text(state.items[i].product.name),
+                        Text('x : ${state.items[i].quantity}'),
+                      ],
+                    ),
                     subtitle: Text('Added by: ${state.items[i].addedBy.name}'),
                     trailing: Text(
                       '\$${state.items[i].product.price.toStringAsFixed(2)}',
@@ -49,6 +54,7 @@ class _SharedCartScreenState extends ConsumerState<SharedCartScreen> {
                   'Total: \$${state.totalPrice.toStringAsFixed(2)}',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
+
                 ElevatedButton(
                   onPressed: () async {
                     final confirmed = await showDialog<bool>(

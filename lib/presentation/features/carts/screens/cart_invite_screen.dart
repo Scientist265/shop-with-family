@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sippylife_assesment/core/utils/toast.dart';
 import 'package:sippylife_assesment/domain/entities/session.dart';
 import 'package:sippylife_assesment/presentation/features/session/providers/providers.dart';
@@ -53,7 +54,26 @@ class CartInviteScreen extends ConsumerWidget {
           ],
         ),
       ),
+      floatingActionButton: state.maybeMap(
+        created:
+            (createdState) => FloatingActionButton(
+              onPressed: () => _shareLink(context, createdState.session.id),
+              child: const Icon(Icons.share),
+            ),
+        orElse: () => null,
+      ),
     );
+  }
+
+  void _shareLink(BuildContext context, String sessionId) {
+    final inviteLink = 'app://shop/session/$sessionId';
+    FlutterClipboard.copy(inviteLink);
+    Toast.show(
+      context: context,
+      message: 'Invite link copied to clipboard',
+      type: ToastType.success,
+    );
+    SharePlus.instance.share(ShareParams(text: inviteLink));
   }
 }
 
@@ -81,17 +101,21 @@ class _InviteSection extends StatelessWidget {
               icon: const Icon(Icons.copy),
               onPressed: () {
                 FlutterClipboard.copy(session.id);
-                Toast(
-                  context,
-                ).show('Session ID copied to clipboard', ToastType.success);
+                Toast.show(
+                  context: context,
+                  message: 'Id copied to clipboard',
+                  type: ToastType.success,
+                );
               },
             ),
             IconButton(
               icon: const Icon(Icons.share),
               onPressed: () {
-                Toast(
-                  context,
-                ).show('Invite link sent to your email', ToastType.success);
+                Toast.show(
+                  context: context,
+                  message: 'Invite link sent to your email',
+                  type: ToastType.success,
+                );
               },
             ),
           ],

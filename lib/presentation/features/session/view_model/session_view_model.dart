@@ -16,6 +16,7 @@ class SessionState with _$SessionState {
     required Option<SessionFailure> failure,
     required bool canJoin,
     required bool isJoined,
+    required List<String> participants,
   }) = _SessionState;
 
   factory SessionState.initial() => SessionState(
@@ -26,6 +27,7 @@ class SessionState with _$SessionState {
     failure: const None(),
     canJoin: false,
     isJoined: false,
+    participants: [],
   );
 }
 

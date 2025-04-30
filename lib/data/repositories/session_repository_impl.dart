@@ -20,7 +20,10 @@ class SessionRepositoryImpl implements SessionRepository {
         createdAt: DateTime.now(),
       );
 
-      await _firestore.collection('sessions').doc(session.id).set(session.toJson());
+      await _firestore
+          .collection('sessions')
+          .doc(session.id)
+          .set(session.toJson());
       return right(session);
     } on FirebaseException catch (e) {
       return left(SessionFailure.databaseError(e.message!));
@@ -30,28 +33,27 @@ class SessionRepositoryImpl implements SessionRepository {
   }
 
   @override
-  Future<Either<SessionFailure, Unit>> joinSession(String sessionId, String friendName) async {
+  Future<Either<SessionFailure, Unit>> joinSession(
+    String sessionId,
+    String friendName,
+  ) async {
     try {
       final doc = await _firestore.collection('sessions').doc(sessionId).get();
 
-      if (!doc.exists) {
-        return left(const SessionFailure.notFound());
-      }
-
+      if (!doc.exists) return left(const SessionFailure.notFound());
       if (doc.data()?['isActive'] != true) {
         return left(const SessionFailure.sessionExpired());
       }
 
       await _firestore.collection('sessions').doc(sessionId).update({
         'friendName': friendName,
+        'participants': FieldValue.arrayUnion([friendName]),
         'updatedAt': FieldValue.serverTimestamp(),
       });
 
       return right(unit);
     } on FirebaseException catch (e) {
       return left(SessionFailure.databaseError(e.message!));
-    } catch (e) {
-      return left(const SessionFailure.unknownError());
     }
   }
 
@@ -59,7 +61,7 @@ class SessionRepositoryImpl implements SessionRepository {
   Future<Either<SessionFailure, Session>> getSession(String sessionId) async {
     try {
       final doc = await _firestore.collection('sessions').doc(sessionId).get();
-      
+
       if (!doc.exists) {
         return left(const SessionFailure.notFound());
       }
