@@ -2,7 +2,7 @@
 It's  a collaborative cart management Flutter app built with a modular architecture and robust state handling and manages cart in real-time, using Riverpod for Statemanagement, Freezed, and Firebase  to enable session-based shared cart management between a host and a friend, also AutoRoute for declarative, type-safe navigation.
 
 ##  Setup Instruction && Key Packages in use:
-
+- Set up firebase cli and firebase option, get the Api key, then run flutter clean && flutter pub get and finally flutter run
 - flutter_riverpod for scalable and testable state management
 - auto_route for declarative and guarded routing
 - freezed + json_serializable for immutable data modeling
