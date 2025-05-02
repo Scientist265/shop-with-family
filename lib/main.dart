@@ -20,13 +20,6 @@ void main() async {
       navigatorKey.currentState?.pushNamed('/session/$sessionId');
     }
   });
-
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.tealAccent,
-      statusBarColor: Colors.teal,
-    ),
-  );
   await dotenv.load(fileName: ".env");
   runApp(ProviderScope(child: App()));
 }

@@ -1,10 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:sippylife_assesment/core/extensions/sizing.dart';
 import 'package:sippylife_assesment/core/routes/app_router.dart';
+import 'package:sippylife_assesment/core/theme/colors.dart';
+import 'package:sippylife_assesment/core/theme/text_style.dart';
+import 'package:sippylife_assesment/core/utils/sheet.dart';
 import 'package:sippylife_assesment/core/utils/toast.dart';
+import 'package:sippylife_assesment/presentation/features/home/widgets/global_button.dart';
+import 'package:sippylife_assesment/presentation/features/home/widgets/global_text_field.dart';
 import 'package:sippylife_assesment/presentation/features/session/providers/providers.dart';
 import 'package:sippylife_assesment/presentation/features/session/view_model/create_session_view_model.dart';
 
@@ -36,12 +43,12 @@ class _CreateSessionScreenState extends ConsumerState<CreateSessionScreen> {
       prev,
       curr,
     ) {
-      curr.maybeWhen(
-        created: (session) {
-          context.router.push(ProductListRoute(sessionId: session.id));
-        },
-        orElse: () {},
-      );
+      // curr.maybeWhen(
+      //   created: (session) {
+      //     context.router.push(ProductListRoute(sessionId: session.id));
+      //   },
+      //   orElse: () {},
+      // );
     });
 
     return Scaffold(
@@ -52,12 +59,9 @@ class _CreateSessionScreenState extends ConsumerState<CreateSessionScreen> {
           key: _formKey,
           child: Column(
             children: [
-              TextFormField(
+              GlobalTextField(
+                labelText: 'Your name',
                 controller: _hostNameController,
-                decoration: const InputDecoration(
-                  labelText: 'Your Name',
-                  border: OutlineInputBorder(),
-                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your name';
@@ -65,7 +69,8 @@ class _CreateSessionScreenState extends ConsumerState<CreateSessionScreen> {
                   return null;
                 },
               ),
-              const SizedBox(height: 20),
+              20.ht,
+
               ElevatedButton(
                 onPressed: state.maybeMap(
                   creating: (_) => null,
@@ -78,61 +83,98 @@ class _CreateSessionScreenState extends ConsumerState<CreateSessionScreen> {
                         }
                       },
                 ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.teal,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                ),
                 child: state.maybeMap(
                   creating: (_) => const CircularProgressIndicator.adaptive(),
-                  orElse: () => const Text('Create Session'),
+                  orElse:
+                      () => Text(
+                        'Create Session',
+                        style: appStyle(13, FontWeight.w500, AppColors.white),
+                      ),
                 ),
               ),
               state.maybeMap(
                 created:
                     (createdState) => Column(
                       children: [
-                        const SizedBox(height: 30),
-                        const Text(
+                        30.ht,
+                        Text(
                           'Share this session ID with your friend:',
-                          style: TextStyle(fontSize: 16),
+                          style: appStyle(13, FontWeight.w400, AppColors.black),
                         ),
-                        const SizedBox(height: 10),
+                        10.ht,
                         SelectableText(
                           createdState.session.id,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: appStyle(16, FontWeight.w500, AppColors.black),
                         ),
-                        const SizedBox(height: 20),
+                        20.ht,
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            ElevatedButton.icon(
+                            GlobalButton(
+                              labelText: "Copy ID",
+                              icon: Icons.copy,
                               onPressed: () {
                                 FlutterClipboard.copy(
                                   createdState.session.id,
                                 ).then((_) {
-                                  Toast.show(
-                                    context: context,
-                                    message: 'Session ID copied to clipboard',
-                                    type: ToastType.success,
-                                  );
+                                  _hostNameController.text.isEmpty
+                                      ? Toast.show(
+                                        context: context,
+                                        message: "Invalid code",
+                                        type: ToastType.error,
+                                      )
+                                      : Toast.show(
+                                        context: context,
+                                        message: 'ID copied to clipboard',
+                                        type: ToastType.success,
+                                      );
                                 });
                               },
-                              icon: const Icon(Icons.copy),
-                              label: const Text('Copy ID'),
                             ),
-                            const SizedBox(width: 20),
+
+                            20.ht,
+                            GlobalButton(
+                              labelText: "Start Shopping",
+                              icon: Icons.shopping_cart,
+                              onPressed: () {
+                                context.router.push(
+                                  ProductListRoute(
+                                    sessionId: createdState.session.id,
+                                  ),
+                                );
+                              },
+                            ),
                           ],
                         ),
                       ],
                     ),
                 error:
-                    (errorState) => Column(
-                      children: [
-                        const SizedBox(height: 20),
-                        Text(
-                          'Error: ${errorState.failure.message}',
-                          style: const TextStyle(color: Colors.red),
-                        ),
-                      ],
+                    (errorState) => Sheet(context).showSheet(
+                      style: SheetStyle.red,
+                      (context) {
+                        return SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.2,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              20.ht,
+                              Text(
+                                'Error: ${errorState.failure.message}',
+                                style: const TextStyle(color: AppColors.white),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     ),
                 orElse: () => const SizedBox.shrink(),
               ),
@@ -143,8 +185,9 @@ class _CreateSessionScreenState extends ConsumerState<CreateSessionScreen> {
       floatingActionButton: state.maybeMap(
         created:
             (createdState) => FloatingActionButton(
+              backgroundColor: AppColors.teal,
               onPressed: () => _shareLink(context, createdState.session.id),
-              child: const Icon(Icons.share),
+              child: const Icon(Icons.share, color: AppColors.white),
             ),
         orElse: () => null,
       ),

@@ -5,18 +5,17 @@ import 'package:toastification/toastification.dart';
 enum ToastType { error, success, info }
 
 class Toast {
-  static const _defaultDuration = Duration(milliseconds: 500);
+  static const _defaultDuration = Duration(seconds: 1);
 
   static final Map<ToastType, Color> _toastTxtColors = {
     ToastType.error: const Color(0xFFF14336),
     ToastType.success: const Color(0xFF0097FF),
-    ToastType.info: const Color(0xFFFF5F00),
+    
   };
 
   static final Map<ToastType, Color> _toastBgColors = {
     ToastType.error: const Color(0xFFFFEAE8),
     ToastType.success: const Color(0xFFE2F3FF),
-    ToastType.info: const Color(0xFFFFF0E7),
   };
 
   static final Map<ToastType, Icon> _toastIcons = {
@@ -30,11 +29,7 @@ class Toast {
       color: Color(0xFF0097FF),
       size: 16,
     ),
-    ToastType.info: const Icon(
-      Icons.info_outline,
-      color: Color(0xFFFF5F00),
-      size: 16,
-    ),
+   
   };
 
   static void show({

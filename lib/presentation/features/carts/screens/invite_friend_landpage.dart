@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sippylife_assesment/core/extensions/sizing.dart';
+import 'package:sippylife_assesment/presentation/features/home/widgets/global_text_field.dart';
 import 'package:sippylife_assesment/providers.dart/session_provider.dart';
 
 @RoutePage()
@@ -24,16 +26,19 @@ class InviteLandingScreen extends ConsumerWidget {
               'Your friend is inviting you to shop!',
               style: Theme.of(context).textTheme.headlineSmall,
             ),
-            const SizedBox(height: 30),
-            TextField(
+            30.ht,
+            GlobalTextField(
+              labelText: 'Your name',
               controller: nameController,
-              decoration: const InputDecoration(
-                labelText: 'Your Name',
-                border: OutlineInputBorder(),
-              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your name';
+                }
+                return null;
+              },
               onChanged: (value) => notifier.updateFriendName(value),
             ),
-            const SizedBox(height: 20),
+            20.ht,
             ElevatedButton(
               onPressed:
                   sessionVM.canJoin && !sessionVM.isLoading
@@ -42,7 +47,7 @@ class InviteLandingScreen extends ConsumerWidget {
                       : null,
               child:
                   sessionVM.isLoading
-                      ? const CircularProgressIndicator()
+                      ? const CircularProgressIndicator.adaptive()
                       : const Text('Start Shopping'),
             ),
             Text(

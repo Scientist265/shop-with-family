@@ -3,8 +3,13 @@ import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:sippylife_assesment/core/extensions/sizing.dart';
+import 'package:sippylife_assesment/core/routes/app_router.dart';
+import 'package:sippylife_assesment/core/theme/colors.dart';
+import 'package:sippylife_assesment/core/theme/text_style.dart';
 import 'package:sippylife_assesment/core/utils/toast.dart';
 import 'package:sippylife_assesment/domain/entities/session.dart';
+import 'package:sippylife_assesment/presentation/features/home/widgets/global_text_field.dart';
 import 'package:sippylife_assesment/presentation/features/session/providers/providers.dart';
 
 @RoutePage()
@@ -23,15 +28,25 @@ class CartInviteScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(
+            GlobalTextField(
+              labelText: 'Your name',
               controller: nameController,
-              decoration: const InputDecoration(
-                labelText: 'Your Name',
-                border: OutlineInputBorder(),
-              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your name';
+                }
+                return null;
+              },
             ),
-            const SizedBox(height: 20),
+          20.ht,
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.teal,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
+              ),
               onPressed: state.maybeMap(
                 creating: (_) => null,
                 orElse:
@@ -43,7 +58,11 @@ class CartInviteScreen extends ConsumerWidget {
               ),
               child: state.maybeMap(
                 creating: (_) => const CircularProgressIndicator.adaptive(),
-                orElse: () => const Text('Create Session'),
+                orElse:
+                    () => Text(
+                      'Create Session',
+                      style: appStyle(14, FontWeight.w500, AppColors.white),
+                    ),
               ),
             ),
             state.maybeMap(
@@ -57,8 +76,10 @@ class CartInviteScreen extends ConsumerWidget {
       floatingActionButton: state.maybeMap(
         created:
             (createdState) => FloatingActionButton(
+              backgroundColor: AppColors.teal,
+
               onPressed: () => _shareLink(context, createdState.session.id),
-              child: const Icon(Icons.share),
+              child: const Icon(Icons.share, color: AppColors.white),
             ),
         orElse: () => null,
       ),
@@ -84,14 +105,17 @@ class _InviteSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final inviteLink = 'app://shop/session/${session.id}';
+
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const SizedBox(height: 30),
         const Text('Share this link:'),
         const SizedBox(height: 10),
         SelectableText(
-          'app://shop/session/${session.id}',
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          inviteLink,
+          style: appStyle(14, FontWeight.w500, AppColors.black),
         ),
         const SizedBox(height: 20),
         Row(
@@ -100,10 +124,10 @@ class _InviteSection extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.copy),
               onPressed: () {
-                FlutterClipboard.copy(session.id);
+                FlutterClipboard.copy(inviteLink);
                 Toast.show(
                   context: context,
-                  message: 'Id copied to clipboard',
+                  message: 'Link copied to clipboard',
                   type: ToastType.success,
                 );
               },
@@ -111,14 +135,25 @@ class _InviteSection extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.share),
               onPressed: () {
-                Toast.show(
-                  context: context,
-                  message: 'Invite link sent to your email',
-                  type: ToastType.success,
-                );
+                SharePlus.instance.share(ShareParams(text: inviteLink));
               },
             ),
           ],
+        ),
+        const SizedBox(height: 30),
+        ElevatedButton.icon(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.teal,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          ),
+          onPressed: () {
+            context.router.push(ProductListRoute(sessionId: session.id));
+          },
+          icon: const Icon(Icons.shopping_cart, color: AppColors.white),
+          label: Text(
+            "Start Shopping",
+            style: appStyle(13, FontWeight.w500, AppColors.white),
+          ),
         ),
       ],
     );

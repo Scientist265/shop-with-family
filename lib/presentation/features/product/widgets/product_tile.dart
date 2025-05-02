@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sippylife_assesment/core/theme/colors.dart';
 import 'package:sippylife_assesment/domain/entities/product.dart';
 
 class ProductTile extends StatelessWidget {
@@ -53,18 +54,18 @@ class ProductTile extends StatelessWidget {
                         fontSize: 16,
                       ),
                     ),
-                    InkWell(
-                      onTap: onAdd,
-                      child: Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: Colors.teal,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        constraints: const BoxConstraints(),
-                        child: const Icon(
-                          Icons.add_shopping_cart,
-                          color: Colors.white,
+                    Material(
+                      color: AppColors.teal,
+                      borderRadius: BorderRadius.circular(4),
+                      child: InkWell(
+                        onTap: onAdd,
+                        borderRadius: BorderRadius.circular(4),
+                        child: const Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Icon(
+                            Icons.add_shopping_cart,
+                            color: AppColors.white,
+                          ),
                         ),
                       ),
                     ),

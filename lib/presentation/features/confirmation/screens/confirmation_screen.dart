@@ -1,7 +1,11 @@
 // lib/presentation/features/confirmation/screens/confirmation_screen.dart
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:sippylife_assesment/core/extensions/sizing.dart';
 import 'package:sippylife_assesment/core/routes/app_router.dart';
+import 'package:sippylife_assesment/core/theme/colors.dart';
+import 'package:sippylife_assesment/core/theme/text_style.dart';
+import 'package:sippylife_assesment/presentation/features/home/widgets/global_button.dart';
 
 @RoutePage()
 class ConfirmationScreen extends StatelessWidget {
@@ -14,11 +18,14 @@ class ConfirmationScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Thanks for shopping!', style: TextStyle(fontSize: 24)),
-            const SizedBox(height: 20),
-            ElevatedButton(
+            Text(
+              'Thanks for shopping!',
+              style: appStyle(20, FontWeight.w500, AppColors.black),
+            ),
+            20.ht,
+            GlobalButton(
+              labelText: "Return to Home",
               onPressed: () => context.router.replaceAll([const HomeRoute()]),
-              child: const Text('Return Home'),
             ),
           ],
         ),

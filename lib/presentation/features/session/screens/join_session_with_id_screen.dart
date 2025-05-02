@@ -2,7 +2,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sippylife_assesment/core/extensions/sizing.dart';
 import 'package:sippylife_assesment/core/routes/app_router.dart';
+import 'package:sippylife_assesment/core/theme/colors.dart';
+import 'package:sippylife_assesment/core/theme/text_style.dart';
+import 'package:sippylife_assesment/presentation/features/home/widgets/global_text_field.dart';
 import 'package:sippylife_assesment/presentation/features/session/view_model/session_view_model.dart';
 import 'package:sippylife_assesment/providers.dart/session_provider.dart';
 
@@ -30,12 +34,22 @@ class JoinSessionWithIdScreen extends ConsumerWidget {
         child: Column(
           children: [
             Text('Joining session: $sessionId'),
-            TextField(
-              decoration: const InputDecoration(labelText: 'Your Name'),
+            20.ht,
+            GlobalTextField(
+              labelText: 'Your name',
               onChanged: (name) => viewModel.updateFriendName(name),
             ),
-            const SizedBox(height: 20),
+
+            20.ht,
+
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.teal,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20,
+                  vertical: 10,
+                ),
+              ),
               onPressed:
                   state.canJoin && !state.isLoading
                       ? () =>
@@ -44,7 +58,10 @@ class JoinSessionWithIdScreen extends ConsumerWidget {
               child:
                   state.isLoading
                       ? const CircularProgressIndicator.adaptive()
-                      : const Text('Start Shopping'),
+                      : Text(
+                        'Start Shopping',
+                        style: appStyle(13, FontWeight.w500, AppColors.white),
+                      ),
             ),
             if (state.failure.isSome()) ...[
               const SizedBox(height: 16),

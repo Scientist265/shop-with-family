@@ -11,6 +11,7 @@ _$CartItemImpl _$$CartItemImplFromJson(Map<String, dynamic> json) =>
       product: Product.fromJson(json['product'] as Map<String, dynamic>),
       quantity: (json['quantity'] as num).toInt(),
       addedBy: $enumDecode(_$AddedByEnumMap, json['addedBy']),
+      addedByName: json['addedByName'] as String,
     );
 
 Map<String, dynamic> _$$CartItemImplToJson(_$CartItemImpl instance) =>
@@ -18,6 +19,7 @@ Map<String, dynamic> _$$CartItemImplToJson(_$CartItemImpl instance) =>
       'product': instance.product,
       'quantity': instance.quantity,
       'addedBy': _$AddedByEnumMap[instance.addedBy]!,
+      'addedByName': instance.addedByName,
     };
 
 const _$AddedByEnumMap = {

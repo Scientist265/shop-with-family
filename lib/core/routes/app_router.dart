@@ -18,9 +18,11 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: HomeRoute.page, initial: true),
     AutoRoute(page: CreateSessionRoute.page),
     AutoRoute(page: CartInviteRoute.page),
+    AutoRoute(page: JoinSessionRoute.page),
     AutoRoute(page: JoinSessionWithIdRoute.page, path: '/session/:sessionId'),
     AutoRoute(page: ProductListRoute.page, path: '/products/:sessionId'),
     AutoRoute(page: SharedCartRoute.page, path: '/cart/:sessionId'),
     AutoRoute(page: ConfirmationRoute.page),
+    AutoRoute(page: InviteLandingRoute.page, path: '/invite/:sessionId'),
   ];
 }

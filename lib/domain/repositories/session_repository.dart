@@ -7,4 +7,5 @@ abstract class SessionRepository {
   Future<Either<SessionFailure, Session>> createSession(String hostName);
   Future<Either<SessionFailure, Unit>> joinSession(String sessionId, String friendName);
   Future<Either<SessionFailure, Session>> getSession(String sessionId);
+
 }

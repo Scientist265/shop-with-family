@@ -53,22 +53,6 @@ class SessionViewModel extends StateNotifier<SessionState> {
     );
   }
 
-  // Future<void> joinSession(String sessionId, String friendName) async {
-  //   state = state.copyWith(isLoading: true);
-  //   final result = await _repository.joinSession(sessionId, friendName);
-  //   state = result.fold(
-  //     (failure) => state.copyWith(
-  //       isLoading: false,
-  //       failure: some(failure),
-  //     ),
-  //     (_) => state.copyWith(
-  //       isLoading: false,
-  //       sessionId: sessionId,
-  //       friendName: friendName,
-  //     ),
-  //   );
-  // }
-
   Future<void> joinSession(String sessionId, String friendName) async {
     state = state.copyWith(isLoading: true);
 
