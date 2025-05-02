@@ -1,4 +1,3 @@
-// Firebase providers
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sippylife_assesment/data/repositories/firebase_cart_repository.dart';

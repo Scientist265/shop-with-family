@@ -1,8 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:sippylife_assesment/domain/entities/added_by.dart';
 import 'package:sippylife_assesment/domain/entities/product.dart';
-
 part 'cart_item.freezed.dart';
 part 'cart_item.g.dart';
 

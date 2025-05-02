@@ -1,6 +1,4 @@
-// lib/domain/failures/product_failure.dart
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 part 'product_failure.freezed.dart';
 
 @freezed

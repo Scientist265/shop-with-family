@@ -1,4 +1,3 @@
-// lib/data/repositories/firebase_cart_repository.dart
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:sippylife_assesment/domain/entities/cart_item.dart';

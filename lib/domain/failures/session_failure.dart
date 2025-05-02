@@ -5,7 +5,7 @@ part 'session_failure.freezed.dart';
 class SessionFailure with _$SessionFailure {
   const SessionFailure._();
   
-  const factory SessionFailure.databaseError(String message) = _DatabaseError; // Make message non-nullable
+  const factory SessionFailure.databaseError(String message) = _DatabaseError; 
   const factory SessionFailure.notFound() = _NotFound;
   const factory SessionFailure.sessionExpired() = _SessionExpired;
   const factory SessionFailure.unknownError() = _UnknownError;
